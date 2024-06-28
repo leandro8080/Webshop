@@ -4,6 +4,19 @@
   "lockfileVersion": 3,
   "requires": true,
   "packages": {
+    "": {
+      "name": "online-shop-api",
+      "version": "1.0.0",
+      "license": "ISC",
+      "dependencies": {
+        "bcrypt": "^5.1.1",
+        "body-parser": "^1.20.2",
+        "express": "^4.19.2",
+        "jsonwebtoken": "^9.0.2",
+        "sqlite3": "^5.1.7",
+        "swagger-ui-express": "^5.0.1"
+      }
+    },
     "node_modules/@gar/promisify": {
       "version": "1.1.3",
       "resolved": "https://registry.npmjs.org/@gar/promisify/-/promisify-1.1.3.tgz",
