@@ -33,6 +33,7 @@
 				align-items: center;
 			}
 		</style>
+		<script src="publicScripts/getEveryProduct.js"></script>
 	</head>
 	<body class="bg-body">
 		<div class="pb-5"></div>
@@ -94,162 +95,18 @@
 		</nav>
 		<div class="vertical-flexbox container-fluid mt-5">
 			<p class="text-center text-danger fs-4">Feedback</p>
-			<div class="vertical-flexbox container-sm gap-10">
-				<!--Products-->
-				<button
-					class="container-sm border border-3 border-dark-subtle bg-light row py-3"
-					data-bs-toggle="modal"
-					data-bs-target="#showDataModal">
-					<div class="col">
-						<h1 class="text-center">Name</h1>
-					</div>
-					<div class="col">
-						<h1 class="text-center">Kategorie</h1>
-					</div>
-					<div class="col">
-						<h1 class="text-center">Preis</h1>
-					</div>
-				</button>
-				<button
-					class="container-sm border border-3 border-dark-subtle bg-light row py-3"
-					data-bs-toggle="modal"
-					data-bs-target="#showDataModal">
-					<div class="col">
-						<h1 class="text-center">Name</h1>
-					</div>
-					<div class="col">
-						<h1 class="text-center">Kategorie</h1>
-					</div>
-					<div class="col">
-						<h1 class="text-center">Preis</h1>
-					</div>
-				</button>
-				<button
-					class="container-sm border border-3 border-dark-subtle bg-light row py-3"
-					data-bs-toggle="modal"
-					data-bs-target="#showDataModal">
-					<div class="col">
-						<h1 class="text-center">Name</h1>
-					</div>
-					<div class="col">
-						<h1 class="text-center">Kategorie</h1>
-					</div>
-					<div class="col">
-						<h1 class="text-center">Preis</h1>
-					</div>
-				</button>
-				<button
-					class="container-sm border border-3 border-dark-subtle bg-light row py-3"
-					data-bs-toggle="modal"
-					data-bs-target="#showDataModal">
-					<div class="col">
-						<h1 class="text-center">Name</h1>
-					</div>
-					<div class="col">
-						<h1 class="text-center">Kategorie</h1>
-					</div>
-					<div class="col">
-						<h1 class="text-center">Preis</h1>
-					</div>
-				</button>
-				<button
-					class="container-sm border border-3 border-dark-subtle bg-light row py-3"
-					data-bs-toggle="modal"
-					data-bs-target="#showDataModal">
-					<div class="col">
-						<h1 class="text-center">Name</h1>
-					</div>
-					<div class="col">
-						<h1 class="text-center">Kategorie</h1>
-					</div>
-					<div class="col">
-						<h1 class="text-center">Preis</h1>
-					</div>
-				</button>
-				<button
-					class="container-sm border border-3 border-dark-subtle bg-light row py-3"
-					data-bs-toggle="modal"
-					data-bs-target="#showDataModal">
-					<div class="col">
-						<h1 class="text-center">Name</h1>
-					</div>
-					<div class="col">
-						<h1 class="text-center">Kategorie</h1>
-					</div>
-					<div class="col">
-						<h1 class="text-center">Preis</h1>
-					</div>
-				</button>
-				<button
-					class="container-sm border border-3 border-dark-subtle bg-light row py-3"
-					data-bs-toggle="modal"
-					data-bs-target="#showDataModal">
-					<div class="col">
-						<h1 class="text-center">Name</h1>
-					</div>
-					<div class="col">
-						<h1 class="text-center">Kategorie</h1>
-					</div>
-					<div class="col">
-						<h1 class="text-center">Preis</h1>
-					</div>
-				</button>
-				<button
-					class="container-sm border border-3 border-dark-subtle bg-light row py-3"
-					data-bs-toggle="modal"
-					data-bs-target="#showDataModal">
-					<div class="col">
-						<h1 class="text-center">Name</h1>
-					</div>
-					<div class="col">
-						<h1 class="text-center">Kategorie</h1>
-					</div>
-					<div class="col">
-						<h1 class="text-center">Preis</h1>
-					</div>
-				</button>
-				<button
-					class="container-sm border border-3 border-dark-subtle bg-light row py-3"
-					data-bs-toggle="modal"
-					data-bs-target="#showDataModal">
-					<div class="col">
-						<h1 class="text-center">Name</h1>
-					</div>
-					<div class="col">
-						<h1 class="text-center">Kategorie</h1>
-					</div>
-					<div class="col">
-						<h1 class="text-center">Preis</h1>
-					</div>
-				</button>
-				<button
-					class="container-sm border border-3 border-dark-subtle bg-light row py-3"
-					data-bs-toggle="modal"
-					data-bs-target="#showDataModal">
-					<div class="col">
-						<h1 class="text-center">Name</h1>
-					</div>
-					<div class="col">
-						<h1 class="text-center">Kategorie</h1>
-					</div>
-					<div class="col">
-						<h1 class="text-center">Preis</h1>
-					</div>
-				</button>
+			<div class="vertical-flexbox container-sm gap-10" id="productsList">
+				<!--Here are the products-->
 			</div>
 		</div>
 		<footer class="fixed-bottom row">
 			<div class="col-11"></div>
-			<button
-				class="btn col"
-				type="button"
-				data-bs-toggle="modal"
-				data-bs-target="#createDataModal">
+			<a href="/product/create" class="btn col" role="button">
 				<img
 					src="images/addImage.png"
 					alt="Add product"
 					style="height: auto; width: 50px" />
-			</button>
+			</a>
 		</footer>
 
 		<!--Modal-->
