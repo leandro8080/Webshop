@@ -251,7 +251,7 @@ app.delete("/products/:id", authenticateToken, authorizeAdmin, (req, res) => {
 });
 
 // HTML Files
-app.get("/product/create", (req, res) => {
+app.get("/products/create/new", (req, res) => {
 	res.sendFile(path.join(__dirname, "../public/createProduct.html"));
 });
 app.get("/products", (req, res) => {
@@ -259,6 +259,9 @@ app.get("/products", (req, res) => {
 });
 app.get("/products/show/:id", (req, res) => {
 	res.sendFile(path.join(__dirname, "../public/getProduct.html"));
+});
+app.get("/products/edit/:id", (req, res) => {
+	res.sendFile(path.join(__dirname, "../public/updateProduct.html"));
 });
 
 app.listen(port, () => {
