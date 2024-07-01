@@ -3,7 +3,7 @@
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Produkte</title>
+		<title>Produkt</title>
 
 		<!--Bootsrap-->
 		<link
@@ -33,9 +33,9 @@
 				align-items: center;
 			}
 		</style>
-		<script src="/publicScripts/getEveryProductPublic.js"></script>
+		<script src="/publicScripts/getCategory.js"></script>
 	</head>
-	<body class="bg-body">
+	<body>
 		<div class="pb-5"></div>
 		<nav
 			class="fixed-top container-fluid text-center border-3 border-dark-subtle mb-5">
@@ -52,12 +52,12 @@
 						<a class="link-dark fs-2" href="/">Home</a>
 					</div>
 					<div class="col text-center">
-						<a class="link-primary fs-2" href="/show/products/all"
+						<a class="link-dark fs-2" href="/show/products/all"
 							>Produkte</a
 						>
 					</div>
 					<div class="col text-start">
-						<a class="link-dark fs-2" href="/show/categories/all"
+						<a class="link-primary fs-2" href="/show/categories/all"
 							>Kategorien</a
 						>
 					</div>
@@ -65,10 +65,25 @@
 				<div class="col"></div>
 			</div>
 		</nav>
-		<div class="vertical-flexbox container-fluid mt-5">
-			<div
-				class="vertical-flexbox container-sm gap-10"
-				id="productList"></div>
+		<div
+			class="container-sm border position-absolute top-50 start-50 translate-middle border-3 border-dark-subtle h-75 bg-light text-center">
+			<p class="fs-1 text-primary" id="categoryName">Name</p>
+
+			<div class="position-absolute bottom-0 py-1 row w-100">
+				<div class="col">
+					<div class="col row">
+						<a
+							role="button"
+							class="btn my-1 btn-primary"
+							href="/show/categories/all">
+							Zurück
+						</a>
+					</div>
+				</div>
+
+				<div class="col-8"></div>
+				<div class="col"></div>
+			</div>
 		</div>
 	</body>
 </html>

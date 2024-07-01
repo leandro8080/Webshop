@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", () => {
 	const backButton = document.getElementById("backButton");
 
 	const fillSelect = () => {
-		fetch("/categories")
+		fetch("/categories/get")
 			.then((response) => response.json())
 			.then((categories) => {
 				productCategoryInput.innerHTML = "";

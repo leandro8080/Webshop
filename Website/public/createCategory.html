@@ -3,7 +3,7 @@
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Produkt bearbeiten</title>
+		<title>Produkt</title>
 
 		<!--Bootsrap-->
 		<link
@@ -33,7 +33,7 @@
 				align-items: center;
 			}
 		</style>
-		<script src="/publicScripts/updateProduct.js"></script>
+		<script src="/publicScripts/createCategory.js"></script>
 	</head>
 	<body>
 		<nav
@@ -48,12 +48,10 @@
 				</div>
 				<div class="col-10 row bg-body">
 					<div class="col text-end">
-						<a class="link-primary fs-2" href="/products"
-							>Produkte</a
-						>
+						<a class="link-dark fs-2" href="/products">Produkte</a>
 					</div>
 					<div class="col text-start">
-						<a class="link-dark fs-2" href="/categories"
+						<a class="link-primary fs-2" href="/categories"
 							>Kategorien</a
 						>
 					</div>
@@ -97,57 +95,25 @@
 				<span
 					class="col-2 input-group-text border-3"
 					id="inputGroup-sizing-lg"
-					>Produktname</span
+					>Kategoriename</span
 				>
 				<input
-					id="productNameText"
+					id="categoryNameText"
 					type="text-4"
 					class="col form-control border-3"
 					aria-label="Sizing example input"
 					aria-describedby="inputGroup-sizing-lg" />
 				<div class="col-3"></div>
 			</div>
-			<div class="input-group input-group-lg row my-1">
-				<div class="col-3"></div>
-				<span
-					class="col-2 input-group-text border-3"
-					id="inputGroup-sizing-lg"
-					>Preis</span
-				>
-				<input
-					id="productPriceText"
-					type="text"
-					class="col-4 form-control border-3"
-					aria-label="Sizing example input"
-					aria-describedby="inputGroup-sizing-lg" />
-				<div class="col-3"></div>
-			</div>
-			<div class="row my-1">
-				<div class="col-3"></div>
-				<div class="col-6">
-					<select
-						id="productCategory"
-						class="form-select"
-						id="productCategoryText">
-						<option value="1" selected>Kategorie1</option>
-						<option value="2">Kategorie2</option>
-						<option value="3">Kategorie3</option>
-						<option value="4">Kategorie4</option>
-						<option value="5">Kategorie5</option>
-					</select>
-				</div>
-				<div class="col-3"></div>
-				<p class="text-danger">feedback</p>
-			</div>
 
 			<div class="position-absolute bottom-0 py-1 row w-100">
 				<div class="col">
-					<button
-						id="backButton"
-						type="button"
-						class="btn my-1 btn-primary w-100 h-100">
+					<a
+						role="button"
+						class="btn my-1 btn-primary w-100 h-100"
+						href="/categories">
 						Zurück
-					</button>
+					</a>
 				</div>
 
 				<div class="col-8"></div>
@@ -155,8 +121,8 @@
 					<button
 						type="button"
 						class="btn my-1 btn-primary w-100 h-100"
-						id="updateButton">
-						Bearbeiten
+						id="createButton">
+						Erstellen
 					</button>
 				</div>
 			</div>

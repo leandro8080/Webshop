@@ -121,7 +121,7 @@ app.post("/reset-password", authenticateToken, (req, res) => {
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 // Routes for categories (public)
-app.get("/categories", (req, res) => {
+app.get("/categories/get", (req, res) => {
 	db.all("SELECT * FROM categories", (err, rows) => {
 		if (err) {
 			res.status(500).json({ error: err.message });
@@ -250,7 +250,10 @@ app.delete("/products/:id", authenticateToken, authorizeAdmin, (req, res) => {
 	});
 });
 
-// HTML Files
+// HTML Files Quelle 254 - ... https://github.com/BitSparkCode/CRUD/blob/main/server.js
+app.get("/", (req, res) => {
+	res.sendFile(path.join(__dirname, "../public/index.html"));
+});
 app.get("/products/create/new", (req, res) => {
 	res.sendFile(path.join(__dirname, "../public/createProduct.html"));
 });
@@ -263,7 +266,30 @@ app.get("/products/show/:id", (req, res) => {
 app.get("/products/edit/:id", (req, res) => {
 	res.sendFile(path.join(__dirname, "../public/updateProduct.html"));
 });
-
+app.get("/categories/create/new", (req, res) => {
+	res.sendFile(path.join(__dirname, "../public/createCategory.html"));
+});
+app.get("/categories", (req, res) => {
+	res.sendFile(path.join(__dirname, "../public/categories.html"));
+});
+app.get("/categories/show/:id", (req, res) => {
+	res.sendFile(path.join(__dirname, "../public/getCategory.html"));
+});
+app.get("/categories/edit/:id", (req, res) => {
+	res.sendFile(path.join(__dirname, "../public/updateCategory.html"));
+});
+app.get("/show/products/all", (req, res) => {
+	res.sendFile(path.join(__dirname, "../public/publicProducts.html"));
+});
+app.get("/show/products/:id/", (req, res) => {
+	res.sendFile(path.join(__dirname, "../public/publicGetProduct.html"));
+});
+app.get("/show/categories/all", (req, res) => {
+	res.sendFile(path.join(__dirname, "../public/publicCategories.html"));
+});
+app.get("/show/categories/:id/", (req, res) => {
+	res.sendFile(path.join(__dirname, "../public/publicGetCategory.html"));
+});
 app.listen(port, () => {
 	console.log(`Server is running on http://localhost:${port}`);
 });

@@ -3,7 +3,7 @@
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Produkte</title>
+		<title>Produkt</title>
 
 		<!--Bootsrap-->
 		<link
@@ -33,9 +33,9 @@
 				align-items: center;
 			}
 		</style>
-		<script src="/publicScripts/getEveryProductPublic.js"></script>
+		<script src="/publicScripts/getProduct.js"></script>
 	</head>
-	<body class="bg-body">
+	<body>
 		<div class="pb-5"></div>
 		<nav
 			class="fixed-top container-fluid text-center border-3 border-dark-subtle mb-5">
@@ -65,10 +65,27 @@
 				<div class="col"></div>
 			</div>
 		</nav>
-		<div class="vertical-flexbox container-fluid mt-5">
-			<div
-				class="vertical-flexbox container-sm gap-10"
-				id="productList"></div>
+		<div
+			class="container-sm border position-absolute top-50 start-50 translate-middle border-3 border-dark-subtle h-75 bg-light text-center">
+			<p class="fs-1 text-primary" id="productName">Name</p>
+			<p class="fs-2" id="productPrice">Preis</p>
+			<p class="fs-2" id="productCategory">Kategorie</p>
+
+			<div class="position-absolute bottom-0 py-1 row w-100">
+				<div class="col">
+					<div class="col row">
+						<a
+							role="button"
+							class="btn my-1 btn-primary"
+							href="/show/products/all">
+							Zurück
+						</a>
+					</div>
+				</div>
+
+				<div class="col-8"></div>
+				<div class="col"></div>
+			</div>
 		</div>
 	</body>
 </html>

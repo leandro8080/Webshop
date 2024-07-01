@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", () => {
 	const productCategoryInput = document.getElementById("productCategory");
 
 	const fillSelect = () => {
-		fetch("/categories")
+		fetch("/categories/get")
 			.then((response) => response.json())
 			.then((categories) => {
 				productCategoryInput.innerHTML = "";
@@ -26,7 +26,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 		fetch(`/products`, {
 			method: "POST",
-			body: JSON.stringify({ title, price, category })
+			body: JSON.stringify({ name, price, category })
 		})
 			.then((response) => response.json())
 			.then((product) => {

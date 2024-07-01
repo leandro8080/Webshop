@@ -33,6 +33,7 @@
 				align-items: center;
 			}
 		</style>
+		<script src="/publicScripts/getEveryCategoryPublic.js"></script>
 	</head>
 	<body class="bg-body">
 		<div class="pb-5"></div>
@@ -41,24 +42,22 @@
 			<div class="row">
 				<div class="col">
 					<img
-						src="images/logo.png"
+						src="/images/logo.png"
 						class="img-fluid"
 						style="height: auto; width: 100px"
 						alt="logo" />
 				</div>
 				<div class="col-10 row bg-body">
 					<div class="col text-end">
-						<a class="link-dark fs-2" href="index.html">Home</a>
+						<a class="link-dark fs-2" href="/">Home</a>
 					</div>
 					<div class="col text-center">
-						<a class="link-dark fs-2" href="publicProducts.html"
+						<a class="link-dark fs-2" href="/show/products/all"
 							>Produkte</a
 						>
 					</div>
 					<div class="col text-start">
-						<a
-							class="link-primary fs-2"
-							href="publicCategories.html"
+						<a class="link-primary fs-2" href="/show/products/all"
 							>Kategorien</a
 						>
 					</div>
@@ -67,48 +66,9 @@
 			</div>
 		</nav>
 		<div class="vertical-flexbox container-fluid mt-5">
-			<div class="vertical-flexbox container-sm gap-10">
-				<button
-					class="container-sm border border-3 border-dark-subtle bg-light row py-3"
-					data-bs-toggle="modal"
-					data-bs-target="#showDataModal">
-					<div class="col">
-						<h1 class="text-center">Name</h1>
-					</div>
-				</button>
-			</div>
-		</div>
-
-		<!--Modal-->
-		<!--ShowData-->
-		<div
-			class="modal fade"
-			id="showDataModal"
-			data-bs-backdrop="static"
-			tabindex="-1"
-			aria-labelledby="showDataModalLabel"
-			aria-hidden="true">
-			<div class="modal-dialog">
-				<div class="modal-content">
-					<div class="modal-header">
-						<h1
-							class="modal-title fs-5 text-primary"
-							id="showDataModalLabel">
-							Name
-						</h1>
-					</div>
-
-					<div class="modal-footer row">
-						<button
-							type="button"
-							class="btn btn-primary col"
-							data-bs-dismiss="modal">
-							Schliessen
-						</button>
-						<div class="col-8"></div>
-					</div>
-				</div>
-			</div>
+			<div
+				class="vertical-flexbox container-sm gap-10"
+				id="categoryList"></div>
 		</div>
 	</body>
 </html>
