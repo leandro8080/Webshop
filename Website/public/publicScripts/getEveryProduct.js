@@ -1,5 +1,9 @@
+// Whole Script: Copied and modified from https://github.com/BitSparkCode/CRUD
 document.addEventListener("DOMContentLoaded", () => {
 	const productsList = document.getElementById("productsList");
+	const feedbackText = document.getElementById("feedbackText");
+	feedbackText.innerHTML = localStorage.getItem("productsFeedback");
+	localStorage.removeItem("productsFeedback");
 
 	const fetchProducts = () => {
 		fetch("/products/get")

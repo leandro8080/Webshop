@@ -1,7 +1,9 @@
+// Whole Script: Copied and modified from https://github.com/BitSparkCode/CRUD
 document.addEventListener("DOMContentLoaded", () => {
 	const updateButton = document.getElementById("updateButton");
 	const categoryNameText = document.getElementById("categoryNameText");
 	const backButton = document.getElementById("backButton");
+	const token = localStorage.getItem("token");
 
 	const fillCategorytData = () => {
 		fetch(`/categories/${window.location.pathname.split("/")[3]}`)
@@ -11,8 +13,7 @@ document.addEventListener("DOMContentLoaded", () => {
 			});
 	};
 
-	updateButton.addEventListener("click", (event) => {
-		event.preventDefault();
+	updateButton.addEventListener("click", () => {
 		const name = categoryNameText.value;
 
 		fetch(`/categories/${window.location.pathname.split("/")[3]}`, {

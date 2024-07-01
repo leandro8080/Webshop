@@ -1,3 +1,4 @@
+// Whole Script: Copied and modified from https://github.com/BitSparkCode/CRUD
 document.addEventListener("DOMContentLoaded", () => {
 	const productList = document.getElementById("productList");
 

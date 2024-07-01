@@ -60,7 +60,7 @@ function authorizeAdmin(req, res, next) {
 }
 
 // Route zur Registrierung
-app.post("/register", (req, res) => {
+app.post("/api/register", (req, res) => {
 	const { username, password, role = "user" } = req.body;
 	const hashedPassword = bcrypt.hashSync(password, 10);
 	db.run(
@@ -77,7 +77,7 @@ app.post("/register", (req, res) => {
 });
 
 // Route zur Anmeldung
-app.post("/login", (req, res) => {
+app.post("/api/login", (req, res) => {
 	const { username, password } = req.body;
 	db.get(
 		"SELECT * FROM users WHERE username = ?",
@@ -289,6 +289,9 @@ app.get("/show/categories/all", (req, res) => {
 });
 app.get("/show/categories/:id/", (req, res) => {
 	res.sendFile(path.join(__dirname, "../public/publicGetCategory.html"));
+});
+app.get("/login", (req, res) => {
+	res.sendFile(path.join(__dirname, "../public/login.html"));
 });
 app.listen(port, () => {
 	console.log(`Server is running on http://localhost:${port}`);
