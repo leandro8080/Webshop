@@ -1,5 +1,3 @@
-# Webshop
-
 # Installation
 
 1. Installieren Sie das Projekt.
