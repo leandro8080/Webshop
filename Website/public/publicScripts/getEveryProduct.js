@@ -1,9 +1,31 @@
 // Whole Script: Copied and modified from https://github.com/BitSparkCode/CRUD
 document.addEventListener("DOMContentLoaded", () => {
 	const productsList = document.getElementById("productsList");
+	const createButton = document.getElementById("createButton");
 	const feedbackText = document.getElementById("feedbackText");
+	const token = localStorage.getItem("token");
 	feedbackText.innerHTML = localStorage.getItem("productsFeedback");
 	localStorage.removeItem("productsFeedback");
+	const logoutButton = document.getElementById("logoutButton");
+	const changePasswordButton = document.getElementById(
+		"changePasswordButton"
+	);
+	const loginLogout = document.getElementById("loginLogout");
+
+	logoutButton.addEventListener("click", () => {
+		localStorage.removeItem("token");
+		location.reload();
+	});
+
+	changePasswordButton.addEventListener("click", () => {
+		localStorage.removeItem("token");
+		window.location.href = "/change-password";
+	});
+
+	if (!token) {
+		loginLogout.innerHTML = `<a href="/login">Anmelden</a>`;
+		createButton.style.display = "none";
+	}
 
 	const fetchProducts = () => {
 		fetch("/products/get")

@@ -18,7 +18,7 @@
 
 		<style>
 			/*https://stackoverflow.com/questions/21854138/changing-the-background-for-bootstrap-dropdown-a-on-hover*/
-			.dropdown-menu > li > a:hover {
+			.dropdown-menu > li > button:hover {
 				background-color: #041438;
 			}
 
@@ -57,7 +57,7 @@
 						>
 					</div>
 				</div>
-				<div class="col">
+				<div class="col" id="loginLogout">
 					<!--Remove border of the button: https://stackoverflow.com/questions/49836206/cannot-remove-bootstrap-button-border-->
 					<button
 						class="btn shadow-none"
@@ -74,30 +74,38 @@
 						class="dropdown-menu bg-primary"
 						style="background-color: primary-bg-subtle">
 						<li>
-							<a
+							<button
 								class="dropdown-item text-light"
-								href="changePassword.html">
+								id="changePasswordButton">
 								Passwort ändern
-							</a>
+							</button>
 						</li>
 						<li>
-							<a class="dropdown-item text-light" href="/">
+							<button
+								class="dropdown-item text-light"
+								id="logoutButton">
 								Abmelden
-							</a>
+							</button>
 						</li>
 					</ul>
 				</div>
 			</div>
 		</nav>
 		<div class="vertical-flexbox container-fluid mt-5">
-			<p class="text-center text-danger fs-4">Feedback</p>
+			<p class="text-center text-danger fs-4" id="feedbackText">
+				Feedback
+			</p>
 			<div
 				class="vertical-flexbox container-sm gap-10"
 				id="categoryList"></div>
 		</div>
 		<footer class="fixed-bottom row">
 			<div class="col-11"></div>
-			<a href="/categories/create/new" class="btn col" type="button">
+			<a
+				href="/categories/create/new"
+				class="btn col"
+				id="createButton"
+				type="button">
 				<img
 					src="images/addImage.png"
 					alt="Add product"

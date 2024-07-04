@@ -9,8 +9,25 @@ document.addEventListener("DOMContentLoaded", () => {
 	const feedbackText = document.getElementById("feedbackText");
 	const placeholder = document.getElementById("placeholder");
 	feedbackText.innerHTML = "";
+	const loginLogout = document.getElementById("loginLogout");
+
+	const logoutButton = document.getElementById("logoutButton");
+	const changePasswordButton = document.getElementById(
+		"changePasswordButton"
+	);
+
+	logoutButton.addEventListener("click", () => {
+		localStorage.removeItem("token");
+		location.reload();
+	});
+
+	changePasswordButton.addEventListener("click", () => {
+		localStorage.removeItem("token");
+		window.location.href = "/change-password";
+	});
 
 	if (!token) {
+		loginLogout.innerHTML = `<a href="/login">Anmelden</a>`;
 		placeholder.remove();
 		deleteProductButton.style.display = "none";
 		updateProductButton.style.display = "none";
@@ -20,6 +37,7 @@ document.addEventListener("DOMContentLoaded", () => {
 		fetch(`/products/${window.location.pathname.split("/")[3]}`)
 			.then((response) => response.json())
 			.then((product) => {
+				document.title = product.name;
 				productNameText.innerHTML = "";
 				productPriceText.innerHTML = "";
 				productCategoryText.innerHTML = "";

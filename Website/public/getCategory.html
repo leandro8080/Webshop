@@ -3,7 +3,7 @@
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Produkt</title>
+		<title>Kategorie</title>
 
 		<!--Bootsrap-->
 		<link
@@ -18,7 +18,7 @@
 
 		<style>
 			/*https://stackoverflow.com/questions/21854138/changing-the-background-for-bootstrap-dropdown-a-on-hover*/
-			.dropdown-menu > li > a:hover {
+			.dropdown-menu > li > button:hover {
 				background-color: #041438;
 			}
 
@@ -56,7 +56,7 @@
 						>
 					</div>
 				</div>
-				<div class="col">
+				<div class="col" id="loginLogout">
 					<!--Remove border of the button: https://stackoverflow.com/questions/49836206/cannot-remove-bootstrap-button-border-->
 					<button
 						class="btn shadow-none"
@@ -73,16 +73,18 @@
 						class="dropdown-menu bg-primary"
 						style="background-color: primary-bg-subtle">
 						<li>
-							<a
+							<button
 								class="dropdown-item text-light"
-								href="changePassword.html">
+								id="changePasswordButton">
 								Passwort ändern
-							</a>
+							</button>
 						</li>
 						<li>
-							<a class="dropdown-item text-light" href="/">
+							<button
+								class="dropdown-item text-light"
+								id="logoutButton">
 								Abmelden
-							</a>
+							</button>
 						</li>
 					</ul>
 				</div>
@@ -91,10 +93,10 @@
 		<div
 			class="container-sm border position-absolute top-50 start-50 translate-middle border-3 border-dark-subtle h-75 bg-light text-center">
 			<p class="fs-1 text-primary" id="categoryName">Name</p>
-
+			<p class="text-danger" id="feedbackText">feedback</p>
 			<div class="position-absolute bottom-0 py-1 row w-100">
 				<div class="col">
-					<div class="col row h-50"></div>
+					<div class="col row h-50" id="placeholder"></div>
 					<div class="col row">
 						<a
 							role="button"

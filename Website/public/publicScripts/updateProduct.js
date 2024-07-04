@@ -8,6 +8,25 @@ document.addEventListener("DOMContentLoaded", () => {
 	const token = localStorage.getItem("token");
 	const feedbackText = document.getElementById("feedbackText");
 	feedbackText.innerHTML = "";
+	const logoutButton = document.getElementById("logoutButton");
+	const changePasswordButton = document.getElementById(
+		"changePasswordButton"
+	);
+	const loginLogout = document.getElementById("loginLogout");
+
+	if (!token) {
+		loginLogout.innerHTML = `<a href="/login">Anmelden</a>`;
+	}
+
+	logoutButton.addEventListener("click", () => {
+		localStorage.removeItem("token");
+		location.reload();
+	});
+
+	changePasswordButton.addEventListener("click", () => {
+		localStorage.removeItem("token");
+		window.location.href = "/change-password";
+	});
 
 	const fillSelect = () => {
 		fetch("/categories/get")

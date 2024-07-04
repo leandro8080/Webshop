@@ -101,7 +101,8 @@ app.post("/api/login", (req, res) => {
 });
 
 // Route zum Zurücksetzen des Passworts
-app.post("/reset-password", authenticateToken, (req, res) => {
+app.post("/reset-password", (req, res) => {
+	// I removed the authentification token, because I dont want, that you have to be logged in, so you can change the password if you forgot the password.
 	const { username, newPassword } = req.body;
 	const hashedPassword = bcrypt.hashSync(newPassword, 10);
 	db.run(
@@ -250,9 +251,10 @@ app.delete("/products/:id", authenticateToken, authorizeAdmin, (req, res) => {
 	});
 });
 
-// HTML Files Quelle 254 - ... https://github.com/BitSparkCode/CRUD/blob/main/server.js
+// HTML Files Quelle 254 - 294 https://github.com/BitSparkCode/CRUD/blob/main/server.js
 app.get("/", (req, res) => {
-	res.sendFile(path.join(__dirname, "../public/index.html"));
+	// Redirect: https://www.geeksforgeeks.org/express-js-res-redirect-function/
+	res.redirect("/products");
 });
 app.get("/products/create/new", (req, res) => {
 	res.sendFile(path.join(__dirname, "../public/createProduct.html"));
@@ -278,20 +280,14 @@ app.get("/categories/show/:id", (req, res) => {
 app.get("/categories/edit/:id", (req, res) => {
 	res.sendFile(path.join(__dirname, "../public/updateCategory.html"));
 });
-app.get("/show/products/all", (req, res) => {
-	res.sendFile(path.join(__dirname, "../public/publicProducts.html"));
-});
-app.get("/show/products/:id/", (req, res) => {
-	res.sendFile(path.join(__dirname, "../public/publicGetProduct.html"));
-});
-app.get("/show/categories/all", (req, res) => {
-	res.sendFile(path.join(__dirname, "../public/publicCategories.html"));
-});
-app.get("/show/categories/:id/", (req, res) => {
-	res.sendFile(path.join(__dirname, "../public/publicGetCategory.html"));
-});
 app.get("/login", (req, res) => {
 	res.sendFile(path.join(__dirname, "../public/login.html"));
+});
+app.get("/register", (req, res) => {
+	res.sendFile(path.join(__dirname, "../public/register.html"));
+});
+app.get("/change-password", (req, res) => {
+	res.sendFile(path.join(__dirname, "../public/changePassword.html"));
 });
 app.listen(port, () => {
 	console.log(`Server is running on http://localhost:${port}`);

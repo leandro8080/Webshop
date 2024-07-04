@@ -4,6 +4,27 @@ document.addEventListener("DOMContentLoaded", () => {
 	const productCategoryInput = document.getElementById("productCategory");
 	const feedbackText = document.getElementById("feedbackText");
 	feedbackText.innerHTML = "";
+	const logoutButton = document.getElementById("logoutButton");
+	const changePasswordButton = document.getElementById(
+		"changePasswordButton"
+	);
+	const token = localStorage.getItem("token");
+	const loginLogout = document.getElementById("loginLogout");
+
+	if (!token) {
+		loginLogout.innerHTML = `<a href="/login">Anmelden</a>`;
+	}
+
+	logoutButton.addEventListener("click", () => {
+		localStorage.removeItem("token");
+		location.reload();
+	});
+
+	changePasswordButton.addEventListener("click", () => {
+		localStorage.removeItem("token");
+		window.location.href = "/change-password";
+	});
+
 	const fillSelect = () => {
 		fetch("/categories/get")
 			.then((response) => response.json())
