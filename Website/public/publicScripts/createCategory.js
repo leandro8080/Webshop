@@ -7,6 +7,28 @@ document.addEventListener("DOMContentLoaded", () => {
 	const changePasswordButton = document.getElementById(
 		"changePasswordButton"
 	);
+	let isAdmin;
+	async function authorizeAdmin() {
+		try {
+			const response = await fetch("/api/isAdmin", {
+				method: "POST",
+				headers: {
+					Authorization: `Bearer ${token}`
+				}
+			});
+			if (response.ok) {
+				const data = await response.json();
+				if (data === "admin") {
+					return true;
+				} else {
+					return false;
+				}
+			}
+		} catch {
+			return false;
+		}
+	}
+	authorizeAdmin();
 
 	const token = localStorage.getItem("token");
 
@@ -29,7 +51,7 @@ document.addEventListener("DOMContentLoaded", () => {
 	createButton.addEventListener("click", () => {
 		const name = document.getElementById("categoryNameText").value;
 		const token = localStorage.getItem("token");
-		if (token) {
+		if (isAdmin) {
 			if (name) {
 				fetch(`/categories`, {
 					method: "POST",
@@ -49,7 +71,7 @@ document.addEventListener("DOMContentLoaded", () => {
 			}
 		} else {
 			feedbackText.innerHTML =
-				"Sie müssen sich authentifizieren, um eine Kategorie zu erstellen";
+				"Sie müssen ein Admin sein, um eine Kategorie zu erstellen";
 		}
 	});
 });

@@ -36,7 +36,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 	updateButton.addEventListener("click", () => {
 		const name = categoryNameText.value;
-		if (token) {
+		if (isAdmin) {
 			if (name) {
 				fetch(`/categories/${window.location.pathname.split("/")[3]}`, {
 					method: "PUT",
@@ -56,7 +56,7 @@ document.addEventListener("DOMContentLoaded", () => {
 			}
 		} else {
 			feedbackText.innerHTML =
-				"Sie müssen sich authentifizieren, um eine Kategorie zu bearbeiten";
+				"Sie müssen ein Admin sein, um eine Kategorie zu bearbeiten";
 		}
 	});
 
@@ -66,5 +66,28 @@ document.addEventListener("DOMContentLoaded", () => {
 		}`;
 	});
 
+	let isAdmin;
+	async function authorizeAdmin() {
+		try {
+			const response = await fetch("/api/isAdmin", {
+				method: "POST",
+				headers: {
+					Authorization: `Bearer ${token}`
+				}
+			});
+			if (response.ok) {
+				const data = await response.json();
+				if (data === "admin") {
+					return true;
+				} else {
+					return false;
+				}
+			}
+		} catch {
+			return false;
+		}
+	}
+
 	fillCategorytData();
+	authorizeAdmin();
 });

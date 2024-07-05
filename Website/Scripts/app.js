@@ -99,6 +99,11 @@ app.post("/api/login", (req, res) => {
 		}
 	);
 });
+// Checks if the user is a administrator
+// Copied from the endpoint create category (for the token and authorization)
+app.post("/api/isAdmin", authenticateToken, authorizeAdmin, (req, res) => {
+	res.json(req.user.role);
+});
 
 // Route zum Zurücksetzen des Passworts
 app.post("/reset-password", (req, res) => {

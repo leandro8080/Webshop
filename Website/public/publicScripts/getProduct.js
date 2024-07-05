@@ -29,8 +29,6 @@ document.addEventListener("DOMContentLoaded", () => {
 	if (!token) {
 		loginLogout.innerHTML = `<a href="/login">Anmelden</a>`;
 		placeholder.remove();
-		deleteProductButton.style.display = "none";
-		updateProductButton.style.display = "none";
 	}
 
 	const fetchProduct = () => {
@@ -55,7 +53,7 @@ document.addEventListener("DOMContentLoaded", () => {
 	};
 
 	const deleteProduct = () => {
-		if (token) {
+		if (isAdmin) {
 			fetch(`/products/${window.location.pathname.split("/")[3]}`, {
 				method: "DELETE",
 				// Authentification with token: https://reqbin.com/code/javascript/ricgaie0/javascript-fetch-bearer-token
@@ -71,10 +69,39 @@ document.addEventListener("DOMContentLoaded", () => {
 			});
 		} else {
 			feedbackText.innerHTML =
-				"Sie müssen sich authentifizieren, um Produkte zu löschen";
+				"Sie müssen ein Admin sein, um Produkte zu löschen";
 		}
 	};
 
+	let isAdmin;
+	async function authorizeAdmin() {
+		try {
+			const response = await fetch("/api/isAdmin", {
+				method: "POST",
+				headers: {
+					Authorization: `Bearer ${token}`
+				}
+			});
+			if (response.ok) {
+				const data = await response.json();
+				if (data === "admin") {
+					isAdmin = true;
+				} else {
+					isAdmin = false;
+				}
+			}
+		} catch {
+			isAdmin = false;
+		} finally {
+			if (!isAdmin) {
+				updateProductButton.style.display = "none";
+				deleteProductButton.style.display = "none";
+				placeholder.remove();
+			}
+		}
+	}
+
 	fetchProduct();
 	deleteProductButton.addEventListener("click", deleteProduct);
+	authorizeAdmin();
 });

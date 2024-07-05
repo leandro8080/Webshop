@@ -24,7 +24,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
 	if (!token) {
 		loginLogout.innerHTML = `<a href="/login">Anmelden</a>`;
-		createButton.style.display = "none";
 	}
 
 	const fetchCategories = () => {
@@ -43,6 +42,32 @@ document.addEventListener("DOMContentLoaded", () => {
 				});
 			});
 	};
+	async function authorizeAdmin() {
+		let isAdmin;
+		try {
+			const response = await fetch("/api/isAdmin", {
+				method: "POST",
+				headers: {
+					Authorization: `Bearer ${token}`
+				}
+			});
+			if (response.ok) {
+				const data = await response.json();
+				if (data === "admin") {
+					isAdmin = true;
+				} else {
+					isAdmin = false;
+				}
+			}
+		} catch {
+			isAdmin = false;
+		} finally {
+			if (!isAdmin) {
+				createButton.style.display = "none";
+			}
+		}
+	}
 
 	fetchCategories();
+	authorizeAdmin();
 });

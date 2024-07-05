@@ -59,7 +59,7 @@ document.addEventListener("DOMContentLoaded", () => {
 		const name = productNameText.value;
 		const price = productPriceText.value;
 		const categoryId = productCategoryInput.value;
-		if (token) {
+		if (isAdmin) {
 			if (name && price && categoryId >= 1) {
 				// Convert price to number https://www.freecodecamp.org/news/how-to-convert-a-string-to-a-number-in-javascript/
 				// Look if the price has a value: https://stackoverflow.com/questions/175739/how-can-i-check-if-a-string-is-a-valid-number
@@ -89,7 +89,7 @@ document.addEventListener("DOMContentLoaded", () => {
 			}
 		} else {
 			feedbackText.innerHTML =
-				"Sie müssen sich authentifizieren, um Produkte zu bearbeiten";
+				"Sie müssen ein Admin, um Produkte zu bearbeiten";
 		}
 	});
 
@@ -99,6 +99,29 @@ document.addEventListener("DOMContentLoaded", () => {
 		}`;
 	});
 
+	let isAdmin;
+	async function authorizeAdmin() {
+		try {
+			const response = await fetch("/api/isAdmin", {
+				method: "POST",
+				headers: {
+					Authorization: `Bearer ${token}`
+				}
+			});
+			if (response.ok) {
+				const data = await response.json();
+				if (data === "admin") {
+					return true;
+				} else {
+					return false;
+				}
+			}
+		} catch {
+			return false;
+		}
+	}
+
 	fillSelect();
 	fillProductData();
+	authorizeAdmin();
 });

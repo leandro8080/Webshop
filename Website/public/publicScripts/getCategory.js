@@ -11,6 +11,7 @@ document.addEventListener("DOMContentLoaded", () => {
 	const changePasswordButton = document.getElementById(
 		"changePasswordButton"
 	);
+
 	const loginLogout = document.getElementById("loginLogout");
 
 	logoutButton.addEventListener("click", () => {
@@ -26,8 +27,6 @@ document.addEventListener("DOMContentLoaded", () => {
 	if (!token) {
 		loginLogout.innerHTML = `<a href="/login">Anmelden</a>`;
 		placeholder.remove();
-		updateButton.style.display = "none";
-		deleteButton.style.display = "none";
 	}
 	const fetchCategory = () => {
 		fetch(`/categories/${window.location.pathname.split("/")[3]}`)
@@ -42,42 +41,79 @@ document.addEventListener("DOMContentLoaded", () => {
 	};
 
 	const deleteProduct = () => {
-		fetch("/products/get")
-			.then((response) => response.json())
-			.then((products) => {
-				let productExistsWithCategory = false;
-				products.forEach((product) => {
-					console.log(product.categoryId);
-					console.log(window.location.pathname.split("/")[3]);
-					if (
-						product.categoryId ==
-						window.location.pathname.split("/")[3]
-					) {
-						console.log("test");
-						feedbackText.innerHTML =
-							"Es gibt noch Produkte mit dieser Kategorie";
-						productExistsWithCategory = true;
+		if (isAdmin) {
+			fetch("/products/get")
+				.then((response) => response.json())
+				.then((products) => {
+					let productExistsWithCategory = false;
+					products.forEach((product) => {
+						console.log(product.categoryId);
+						console.log(window.location.pathname.split("/")[3]);
+						if (
+							product.categoryId ==
+							window.location.pathname.split("/")[3]
+						) {
+							console.log("test");
+							feedbackText.innerHTML =
+								"Es gibt noch Produkte mit dieser Kategorie";
+							productExistsWithCategory = true;
+							return;
+						}
+					});
+					if (productExistsWithCategory) {
 						return;
 					}
+					fetch(
+						`/categories/${window.location.pathname.split("/")[3]}`,
+						{
+							method: "DELETE",
+							headers: {
+								Authorization: `Bearer ${token}`
+							}
+						}
+					).then(() => {
+						localStorage.setItem(
+							"categoriesFeedback",
+							"Die Kategorie wurde gelöscht"
+						);
+						window.location.href = "/categories";
+					});
 				});
-				if (productExistsWithCategory) {
-					return;
-				}
-				fetch(`/categories/${window.location.pathname.split("/")[3]}`, {
-					method: "DELETE",
-					headers: {
-						Authorization: `Bearer ${token}`
-					}
-				}).then(() => {
-					localStorage.setItem(
-						"categoriesFeedback",
-						"Die Kategorie wurde gelöscht"
-					);
-					window.location.href = "/categories";
-				});
-			});
+		} else {
+			feedbackText.innerHTML =
+				"Sie müssen ein Admin sein, um Kategorien zu löschen";
+		}
 	};
+
+	let isAdmin;
+	async function authorizeAdmin() {
+		try {
+			const response = await fetch("/api/isAdmin", {
+				method: "POST",
+				headers: {
+					Authorization: `Bearer ${token}`
+				}
+			});
+			if (response.ok) {
+				const data = await response.json();
+				if (data === "admin") {
+					isAdmin = true;
+				} else {
+					isAdmin = false;
+				}
+			}
+		} catch {
+			isAdmin = false;
+		} finally {
+			if (!isAdmin) {
+				updateButton.style.display = "none";
+				deleteButton.style.display = "none";
+				placeholder.remove();
+			}
+		}
+	}
 
 	fetchCategory();
 	deleteButton.addEventListener("click", deleteProduct);
+	authorizeAdmin();
 });
