@@ -7,4 +7,4 @@
 
 # Hinweise
 
-Um Produte und Kategorien zu erstellen, bearbeiten oder löschen, müssen Sie als Admin angemeldet sein. Der Standart Admin ist "admin" mit dem Passwort "admin"
+Um Produte und Kategorien zu erstellen, bearbeiten oder löschen, müssen Sie als Admin angemeldet sein. Der Standart Admin ist "admin" mit dem Passwort "admin".
