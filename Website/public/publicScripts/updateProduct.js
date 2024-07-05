@@ -99,7 +99,7 @@ document.addEventListener("DOMContentLoaded", () => {
 		}`;
 	});
 
-	let isAdmin;
+	let isAdmin = authorizeAdmin();
 	async function authorizeAdmin() {
 		try {
 			const response = await fetch("/api/isAdmin", {
@@ -123,5 +123,4 @@ document.addEventListener("DOMContentLoaded", () => {
 
 	fillSelect();
 	fillProductData();
-	authorizeAdmin();
 });

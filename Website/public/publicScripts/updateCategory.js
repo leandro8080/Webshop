@@ -10,6 +10,7 @@ document.addEventListener("DOMContentLoaded", () => {
 	const changePasswordButton = document.getElementById(
 		"changePasswordButton"
 	);
+	let isAdmin = authorizeAdmin();
 	const loginLogout = document.getElementById("loginLogout");
 
 	if (!token) {
@@ -65,8 +66,6 @@ document.addEventListener("DOMContentLoaded", () => {
 			window.location.pathname.split("/")[3]
 		}`;
 	});
-
-	let isAdmin;
 	async function authorizeAdmin() {
 		try {
 			const response = await fetch("/api/isAdmin", {

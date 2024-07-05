@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", () => {
 	const changePasswordButton = document.getElementById(
 		"changePasswordButton"
 	);
-	let isAdmin;
+	let isAdmin = authorizeAdmin();
 	async function authorizeAdmin() {
 		try {
 			const response = await fetch("/api/isAdmin", {
@@ -28,7 +28,6 @@ document.addEventListener("DOMContentLoaded", () => {
 			return false;
 		}
 	}
-	authorizeAdmin();
 
 	const token = localStorage.getItem("token");
 
